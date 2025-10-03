@@ -3,182 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Komal | Portfolio</title>
+  <title>Komal | Hackathon Portfolio</title>
   <style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+    * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
     body {
-      font-family: 'Poppins', sans-serif;
-      color: white;
-      background: linear-gradient(-45deg, #1a1a40, #3f0071, #6a00f4, #ff4ecd);
-      background-size: 400% 400%;
-      animation: gradientBG 20s ease infinite;  /* slower gradient */
-      line-height: 1.6;
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(-45deg,#1a1a2e,#16213e,#0f3460,#533483);
+      background-size:400% 400%;
+      animation:gradientBG 10s ease infinite;
+      color:#eee;
+      overflow-x:hidden;
     }
-
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
+    @keyframes gradientBG { 0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%} }
     nav {
-      position: sticky;
-      top: 0;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(10px);
+      position:sticky;top:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);
+      padding:15px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;
     }
-    nav h2 { font-size: 1.5rem; color: #ffdf00; }
-    nav a {
-      margin-left: 20px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    nav a:hover { color: #ffdf00; }
+    nav a { color:#fff;margin:0 15px;text-decoration:none;font-weight:500;transition:0.3s; }
+    nav a:hover { color:#ff4ecd;text-shadow:0 0 10px #ff4ecd; }
+    .toggle-btn { background:#00f2ff;border:none;padding:8px 16px;border-radius:20px;cursor:pointer;font-weight:bold;color:#111;
+      box-shadow:0 0 10px #00f2ff;transition:0.3s;}
+    .toggle-btn:hover { transform:scale(1.1); }
 
-    header {
-      height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+    /* Hero */
+    .hero { text-align:center;padding:120px 20px; }
+    .hero h1 {
+      font-size:3.5rem;color:#fff;text-shadow:0 0 15px #00f2ff,0 0 30px #ff4ecd;
+      animation:glow 2s infinite alternate;
     }
-    header h1 { font-size: 3rem; }
-    .typing {
-      border-right: 2px solid #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      animation: typing 6s steps(30, end), blink 0.8s infinite;
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    @keyframes blink {
-      50% { border-color: transparent }
-    }
+    @keyframes glow { from{text-shadow:0 0 10px #00f2ff;} to{text-shadow:0 0 20px #ff4ecd;} }
+    .typing { font-size:1.3rem;color:#00f2ff;margin-top:10px;height:30px; }
+    .hero img { width:180px;border-radius:50%;margin-top:25px;border:4px solid #fff;box-shadow:0 0 25px #00f2ff; }
 
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    section h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: #ffdf00;
-    }
-
-    /* Projects */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: rgba(255,255,255,0.1);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    }
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .card-body { padding: 15px; }
-    .card-body h3 { margin-bottom: 10px; color: #ffdf00; }
+    section { padding:80px 20px;max-width:1000px;margin:auto; }
+    h2 { text-align:center;color:#00f2ff;margin-bottom:30px;font-size:2rem;text-shadow:0 0 10px #00f2ff; }
 
     /* Skills */
-    .skills-container {
-      max-width: 600px;
-      margin: auto;
-    }
-    .skill {
-      margin: 15px 0;
-    }
-    .skill p {
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: #ffdf00;
-    }
-    .bar {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      overflow: hidden;
-      height: 12px;
-    }
-    .fill {
-      height: 100%;
-      border-radius: 20px;
-    }
-    .fill.high { width: 95%; background: #00ff99; }
-    .fill.medium { width: 65%; background: #ffdf00; }
-    .fill.low { width: 40%; background: #ff4ecd; }
+    .skills { display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;text-align:center; }
+    .skill { background:rgba(255,255,255,0.05);padding:20px;border-radius:12px;box-shadow:0 0 15px rgba(0,0,0,0.5); }
+    .skill h3 { margin-bottom:10px;color:#ff4ecd; }
+    .bar { height:10px;background:#333;border-radius:5px;overflow:hidden;margin-top:5px; }
+    .bar span { display:block;height:100%;background:linear-gradient(90deg,#00f2ff,#ff4ecd); }
+
+    /* Projects */
+    .projects { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px; }
+    .card { background:rgba(255,255,255,0.05);border-radius:12px;overflow:hidden;
+      box-shadow:0 0 20px rgba(0,0,0,0.6);transition:0.4s;}
+    .card:hover { transform:translateY(-10px) scale(1.05);box-shadow:0 0 20px #00f2ff,0 0 30px #ff4ecd; }
+    .card img { width:100%;height:180px;object-fit:cover; }
+    .card-body { padding:15px;text-align:center; }
 
     /* Achievements */
-    .achievements-list {
-      list-style: none;
-      max-width: 600px;
-      margin: auto;
-      padding: 0;
-    }
-    .achievements-list li {
-      background: rgba(255,255,255,0.1);
-      margin: 10px 0;
-      padding: 12px 18px;
-      border-radius: 10px;
-      transition: transform 0.2s;
-    }
-    .achievements-list li:hover {
-      transform: translateX(5px);
-      background: rgba(255,255,255,0.2);
-    }
+    .achievements { display:flex;justify-content:center;gap:20px;flex-wrap:wrap; }
+    .badge { background:#111;padding:15px 25px;border-radius:30px;
+      color:#fff;box-shadow:0 0 15px #ff4ecd;transition:0.3s; }
+    .badge:hover { transform:scale(1.1); }
 
     /* Contact */
-    .contact-links {
-      text-align: center;
-    }
-    .contact-links a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 20px;
-      border-radius: 25px;
-      text-decoration: none;
-      background: #ffdf00;
-      color: #000;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    .contact-links a:hover {
-      background: #fff;
-      color: #000;
-    }
+    .contact { text-align:center; }
+    .contact a { display:inline-block;margin:12px;padding:12px 24px;border-radius:30px;
+      background:linear-gradient(45deg,#ff4ecd,#00f2ff);color:white;text-decoration:none;font-weight:bold;
+      box-shadow:0 0 20px #00f2ff;transition:0.3s;}
+    .contact a:hover { transform:scale(1.1);box-shadow:0 0 25px #ff4ecd; }
 
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: rgba(0,0,0,0.7);
-      font-size: 0.9rem;
-    }
+    footer { background:rgba(0,0,0,0.8);text-align:center;padding:20px;font-size:0.9rem;color:#bbb; }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
   <nav>
-    <h2>Komal 🚀</h2>
+    <div><strong>⚡ Komal</strong></div>
     <div>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
@@ -186,89 +81,111 @@
       <a href="#achievements">Achievements</a>
       <a href="#contact">Contact</a>
     </div>
+    <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Mode</button>
   </nav>
 
-  <header>
+  <!-- Hero -->
+  <section class="hero">
     <h1>Hi, I’m Komal 👩‍💻</h1>
-    <p class="typing">Aspiring Developer | Creative Learner | Hackathon Enthusiast</p>
-  </header>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Hello! I’m Komal, passionate about building user-friendly web applications and exploring technology.  
-    I love hackathons, learning new skills, and creating small projects that solve real-world problems in simple ways.</p>
+    <div class="typing" id="typing"></div>
+    <img src="https://i.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" alt="profile gif">
   </section>
 
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p style="text-align:center;max-width:700px;margin:auto;font-size:1.1rem;">
+      Hello! I am Komal. Passionate about building user-friendly web applications 
+      and exploring technology. This portfolio was created as part of my 
+      <strong>Development Club Bootcamp Hackathon</strong>. 🚀
+    </p>
+  </section>
+
+  <!-- Skills -->
   <section id="skills">
     <h2>Skills</h2>
-    <div class="skills-container">
-      <div class="skill">
-        <p>🐍 Python</p>
-        <div class="bar"><div class="fill high"></div></div>
-      </div>
-      <div class="skill">
-        <p>⚡ C++</p>
-        <div class="bar"><div class="fill high"></div></div>
-      </div>
-      <div class="skill">
-        <p>🌐 JavaScript</p>
-        <div class="bar"><div class="fill medium"></div></div>
-      </div>
-      <div class="skill">
-        <p>⚛️ React</p>
-        <div class="bar"><div class="fill low"></div></div>
-      </div>
+    <div class="skills">
+      <div class="skill"><h3>🐍 Python</h3><div class="bar"><span style="width:95%"></span></div></div>
+      <div class="skill"><h3>⚡ C++</h3><div class="bar"><span style="width:90%"></span></div></div>
+      <div class="skill"><h3>HTML</h3><div class="bar"><span style="width:90%"></span></div></div>
+      <div class="skill"><h3>CSS</h3><div class="bar"><span style="width:80%"></span></div></div>
+      <div class="skill"><h3>JavaScript</h3><div class="bar"><span style="width:70%"></span></div></div>
+      <div class="skill"><h3>React</h3><div class="bar"><span style="width:60%"></span></div></div>
     </div>
   </section>
 
+  <!-- Projects -->
   <section id="projects">
     <h2>Projects</h2>
     <div class="projects">
       <div class="card">
-        <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" alt="Coding">
+        <img src="https://i.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif" alt="project gif">
         <div class="card-body">
           <h3>Portfolio Website</h3>
-          <p>My first personal website showcasing my skills, projects, and achievements.</p>
+          <p>My personal website built with HTML, CSS, and JS — glowing with hackathon vibes ✨</p>
         </div>
       </div>
       <div class="card">
-        <img src="https://media.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif" alt="Web Dev">
+        <img src="https://i.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" alt="project gif">
         <div class="card-body">
-          <h3>Hackathon Project</h3>
-          <p>A creative solution built in a short coding sprint with my teammates.</p>
+          <h3>To-Do List App</h3>
+          <p>A simple app with animations & interactive design 🎯</p>
         </div>
       </div>
       <div class="card">
-        <img src="https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif" alt="JS">
+        <img src="https://i.giphy.com/media/QTfX9Ejfra3ZmNxh6B/giphy.gif" alt="project gif">
         <div class="card-body">
-          <h3>Mini To-Do App</h3>
-          <p>A simple JavaScript app to add and track daily tasks.</p>
+          <h3>Weather Finder</h3>
+          <p>Live weather app fetching data via API ☁️</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Achievements -->
   <section id="achievements">
     <h2>Achievements</h2>
-    <ul class="achievements-list">
-      <li>🌟 Completed Dev Club Web Development Bootcamp</li>
-      <li>⚡ Built my first personal portfolio website</li>
-      <li>🤝 Participated in college hackathon projects</li>
-      <li>📚 Practicing Python and C++ through coding challenges</li>
-    </ul>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <div class="contact-links">
-      <a href="mailto:ahlawatkomal20@gmail.com">📧 Email</a>
-      <a href="https://github.com/komal-20ahlawat" target="_blank">💻 GitHub</a>
-      <a href="https://linkedin.com" target="_blank">🔗 LinkedIn</a>
+    <div class="achievements">
+      <div class="badge">🌟 Completed Dev Club Bootcamp</div>
+      <div class="badge">⚡ Built First Portfolio Website</div>
+      <div class="badge">🤝 Participated in Hackathons</div>
     </div>
   </section>
 
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <a href="mailto:ahlawatkomal20@gmail.com">📧 Email</a>
+    <a href="https://linkedin.com" target="_blank">🔗 LinkedIn</a>
+    <a href="https://github.com/komal-20ahlawat" target="_blank">💻 GitHub</a>
+  </section>
+
+  <!-- Footer -->
   <footer>
     © 2025 Komal | Built with ❤️ for Dev Club Hackathon
   </footer>
+
+  <!-- JS for Typing Animation + Dark Mode -->
+  <script>
+    const texts = ["Aspiring Developer", "Creative Learner", "Hackathon Enthusiast"];
+    let i=0, j=0, currentText="", isDeleting=false;
+    function type() {
+      const typingDiv=document.getElementById("typing");
+      if(i<texts.length){
+        if(!isDeleting && j<=texts[i].length){
+          currentText=texts[i].substring(0,j++);
+          typingDiv.innerHTML=currentText;
+        } else if(isDeleting && j>=0){
+          currentText=texts[i].substring(0,j--);
+          typingDiv.innerHTML=currentText;
+        }
+        if(j===texts[i].length+1){ isDeleting=true; setTimeout(type,1000); }
+        else if(j<0){ isDeleting=false;i++; if(i>=texts.length) i=0; }
+        setTimeout(type,isDeleting?50:100);
+      }
+    }
+    type();
+    function toggleDarkMode(){ document.body.classList.toggle("dark-mode"); }
+  </script>
 </body>
 </html>
