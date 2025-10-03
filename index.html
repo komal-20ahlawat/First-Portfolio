@@ -14,8 +14,14 @@
       animation:gradientBG 10s ease infinite;
       color:#eee;
       overflow-x:hidden;
+      position: relative;
+      min-height: 100vh;
     }
-    @keyframes gradientBG { 0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%} }
+    @keyframes gradientBG { 
+      0%{background-position:0% 50%} 
+      50%{background-position:100% 50%} 
+      100%{background-position:0% 50%} 
+    }
     nav {
       position:sticky;top:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);
       padding:15px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;
@@ -26,8 +32,48 @@
       box-shadow:0 0 10px #00f2ff;transition:0.3s;}
     .toggle-btn:hover { transform:scale(1.1); }
 
+    /* Floating Particles */
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;   /* behind content but above background */
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      animation: float 12s linear infinite;
+    }
+    @keyframes float {
+      from { transform: translateY(100vh) scale(0.5); opacity:0; }
+      to { transform: translateY(-10vh) scale(1.2); opacity:1; }
+    }
+
+    /* Intro with Profile Pic */
+    .intro {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+      position: relative;
+      z-index: 2; /* keep content above particles */
+    }
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      object-fit: cover;
+    }
+
     /* Hero */
-    .hero { text-align:center;padding:120px 20px; }
+    .hero { text-align:center;padding:60px 20px; position:relative; z-index:2; }
     .hero h1 {
       font-size:3.5rem;color:#fff;text-shadow:0 0 15px #00f2ff,0 0 30px #ff4ecd;
       animation:glow 2s infinite alternate;
@@ -36,7 +82,7 @@
     .typing { font-size:1.3rem;color:#00f2ff;margin-top:10px;height:30px; }
     .hero img { width:180px;border-radius:50%;margin-top:25px;border:4px solid #fff;box-shadow:0 0 25px #00f2ff; }
 
-    section { padding:80px 20px;max-width:1000px;margin:auto; }
+    section { padding:80px 20px;max-width:1000px;margin:auto; position:relative; z-index:2; }
     h2 { text-align:center;color:#00f2ff;margin-bottom:30px;font-size:2rem;text-shadow:0 0 10px #00f2ff; }
 
     /* Skills */
@@ -67,10 +113,13 @@
       box-shadow:0 0 20px #00f2ff;transition:0.3s;}
     .contact a:hover { transform:scale(1.1);box-shadow:0 0 25px #ff4ecd; }
 
-    footer { background:rgba(0,0,0,0.8);text-align:center;padding:20px;font-size:0.9rem;color:#bbb; }
+    footer { background:rgba(0,0,0,0.8);text-align:center;padding:20px;font-size:0.9rem;color:#bbb; position:relative; z-index:2;}
   </style>
 </head>
 <body>
+  <!-- Floating Particles -->
+  <div id="particles"></div>
+
   <!-- Navbar -->
   <nav>
     <div><strong>⚡ Komal</strong></div>
@@ -84,9 +133,19 @@
     <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Mode</button>
   </nav>
 
+  <!-- Intro with Profile Image -->
+  <header>
+    <div class="intro">
+      <img src="profilepic.jpeg" alt="Komal Profile" class="profile-pic">
+      <div>
+        <h1>Hi, I’m Komal 👩‍💻</h1>
+        <p>Aspiring Developer | Creative Learner | Hackathon Enthusiast</p>
+      </div>
+    </div>
+  </header>
+
   <!-- Hero -->
   <section class="hero">
-    <h1>Hi, I’m Komal 👩‍💻</h1>
     <div class="typing" id="typing"></div>
     <img src="https://i.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" alt="profile gif">
   </section>
@@ -95,9 +154,12 @@
   <section id="about">
     <h2>About Me</h2>
     <p style="text-align:center;max-width:700px;margin:auto;font-size:1.1rem;">
-      Hello! I am Komal. Passionate about building user-friendly web applications 
-      and exploring technology. This portfolio was created as part of my 
-      <strong>Development Club Bootcamp Hackathon</strong>. 🚀
+      Hi! I’m Komal 👩‍💻 — a passionate coder who loves solving problems and 
+      turning ideas into reality through code.  
+      I enjoy building clean, user-friendly web applications, exploring new 
+      technologies, and continuously learning.  
+      Whether it’s designing a creative project, debugging complex logic, or 
+      collaborating with others, I thrive on challenges that push me to grow. 🚀
     </p>
   </section>
 
@@ -105,10 +167,10 @@
   <section id="skills">
     <h2>Skills</h2>
     <div class="skills">
-      <div class="skill"><h3>🐍 Python</h3><div class="bar"><span style="width:95%"></span></div></div>
-      <div class="skill"><h3>⚡ C++</h3><div class="bar"><span style="width:90%"></span></div></div>
+      <div class="skill"><h3>Python</h3><div class="bar"><span style="width:95%"></span></div></div>
+      <div class="skill"><h3>C++</h3><div class="bar"><span style="width:90%"></span></div></div>
       <div class="skill"><h3>HTML</h3><div class="bar"><span style="width:90%"></span></div></div>
-      <div class="skill"><h3>CSS</h3><div class="bar"><span style="width:80%"></span></div></div>
+      <div class="skill"><h3>CSS</h3><div class="bar"><span style="width:85%"></span></div></div>
       <div class="skill"><h3>JavaScript</h3><div class="bar"><span style="width:70%"></span></div></div>
       <div class="skill"><h3>React</h3><div class="bar"><span style="width:60%"></span></div></div>
     </div>
@@ -146,9 +208,9 @@
   <section id="achievements">
     <h2>Achievements</h2>
     <div class="achievements">
-      <div class="badge">🌟 Completed Dev Club Bootcamp</div>
-      <div class="badge">⚡ Built First Portfolio Website</div>
-      <div class="badge">🤝 Participated in Hackathons</div>
+      <div class="badge">🎯 Built my first interactive portfolio website</div>
+      <div class="badge">🏆 Participating in college hackathons💻</div>
+      <div class="badge">🏅 Learning advanced web dev through bootcamp</div>
     </div>
   </section>
 
@@ -165,8 +227,9 @@
     © 2025 Komal | Built with ❤️ for Dev Club Hackathon
   </footer>
 
-  <!-- JS for Typing Animation + Dark Mode -->
+  <!-- JS for Typing Animation + Dark Mode + Particles -->
   <script>
+    // Typing Effect
     const texts = ["Aspiring Developer", "Creative Learner", "Hackathon Enthusiast"];
     let i=0, j=0, currentText="", isDeleting=false;
     function type() {
@@ -186,6 +249,18 @@
     }
     type();
     function toggleDarkMode(){ document.body.classList.toggle("dark-mode"); }
+
+    // Floating Particles
+    const particlesContainer=document.getElementById("particles");
+    for(let p=0;p<40;p++){
+      const particle=document.createElement("div");
+      particle.classList.add("particle");
+      particle.style.left=Math.random()*100+"vw";
+      particle.style.animationDuration=(6+Math.random()*10)+"s";
+      particle.style.opacity=Math.random();
+      particle.style.transform=`scale(${0.5+Math.random()})`;
+      particlesContainer.appendChild(particle);
+    }
   </script>
 </body>
 </html>
