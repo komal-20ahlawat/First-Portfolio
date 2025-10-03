@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Komal | Hackathon Portfolio</title>
+  <!-- Devicon for skill logos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
     * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
@@ -14,14 +16,22 @@
       animation:gradientBG 10s ease infinite;
       color:#eee;
       overflow-x:hidden;
-      position: relative;
-      min-height: 100vh;
     }
     @keyframes gradientBG { 
       0%{background-position:0% 50%} 
       50%{background-position:100% 50%} 
       100%{background-position:0% 50%} 
     }
+
+    /* Floating particles canvas */
+    #particles {
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      z-index:-1;
+      pointer-events:none;
+    }
+
     nav {
       position:sticky;top:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);
       padding:15px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;
@@ -32,27 +42,6 @@
       box-shadow:0 0 10px #00f2ff;transition:0.3s;}
     .toggle-btn:hover { transform:scale(1.1); }
 
-    /* Floating Particles */
-    #particles {
-      position: fixed;
-      inset: 0;
-      z-index: 0;   /* behind content but above background */
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .particle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: rgba(255,255,255,0.8);
-      border-radius: 50%;
-      animation: float 12s linear infinite;
-    }
-    @keyframes float {
-      from { transform: translateY(100vh) scale(0.5); opacity:0; }
-      to { transform: translateY(-10vh) scale(1.2); opacity:1; }
-    }
-
     /* Intro with Profile Pic */
     .intro {
       display: flex;
@@ -60,8 +49,6 @@
       gap: 20px;
       justify-content: center;
       margin-top: 30px;
-      position: relative;
-      z-index: 2; /* keep content above particles */
     }
     .profile-pic {
       width: 100px;
@@ -73,7 +60,7 @@
     }
 
     /* Hero */
-    .hero { text-align:center;padding:60px 20px; position:relative; z-index:2; }
+    .hero { text-align:center;padding:60px 20px; }
     .hero h1 {
       font-size:3.5rem;color:#fff;text-shadow:0 0 15px #00f2ff,0 0 30px #ff4ecd;
       animation:glow 2s infinite alternate;
@@ -82,13 +69,14 @@
     .typing { font-size:1.3rem;color:#00f2ff;margin-top:10px;height:30px; }
     .hero img { width:180px;border-radius:50%;margin-top:25px;border:4px solid #fff;box-shadow:0 0 25px #00f2ff; }
 
-    section { padding:80px 20px;max-width:1000px;margin:auto; position:relative; z-index:2; }
+    section { padding:80px 20px;max-width:1000px;margin:auto; }
     h2 { text-align:center;color:#00f2ff;margin-bottom:30px;font-size:2rem;text-shadow:0 0 10px #00f2ff; }
 
     /* Skills */
     .skills { display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;text-align:center; }
     .skill { background:rgba(255,255,255,0.05);padding:20px;border-radius:12px;box-shadow:0 0 15px rgba(0,0,0,0.5); }
-    .skill h3 { margin-bottom:10px;color:#ff4ecd; }
+    .skill h3 { margin-bottom:10px;color:#ff4ecd; display:flex; align-items:center; justify-content:center; gap:8px; }
+    .skill i { font-size:22px; }
     .bar { height:10px;background:#333;border-radius:5px;overflow:hidden;margin-top:5px; }
     .bar span { display:block;height:100%;background:linear-gradient(90deg,#00f2ff,#ff4ecd); }
 
@@ -113,12 +101,12 @@
       box-shadow:0 0 20px #00f2ff;transition:0.3s;}
     .contact a:hover { transform:scale(1.1);box-shadow:0 0 25px #ff4ecd; }
 
-    footer { background:rgba(0,0,0,0.8);text-align:center;padding:20px;font-size:0.9rem;color:#bbb; position:relative; z-index:2;}
+    footer { background:rgba(0,0,0,0.8);text-align:center;padding:20px;font-size:0.9rem;color:#bbb; }
   </style>
 </head>
 <body>
   <!-- Floating Particles -->
-  <div id="particles"></div>
+  <canvas id="particles"></canvas>
 
   <!-- Navbar -->
   <nav>
@@ -167,12 +155,12 @@
   <section id="skills">
     <h2>Skills</h2>
     <div class="skills">
-      <div class="skill"><h3>Python</h3><div class="bar"><span style="width:95%"></span></div></div>
-      <div class="skill"><h3>C++</h3><div class="bar"><span style="width:90%"></span></div></div>
-      <div class="skill"><h3>HTML</h3><div class="bar"><span style="width:90%"></span></div></div>
-      <div class="skill"><h3>CSS</h3><div class="bar"><span style="width:85%"></span></div></div>
-      <div class="skill"><h3>JavaScript</h3><div class="bar"><span style="width:70%"></span></div></div>
-      <div class="skill"><h3>React</h3><div class="bar"><span style="width:60%"></span></div></div>
+      <div class="skill"><h3><i class="devicon-python-plain colored"></i> Python</h3><div class="bar"><span style="width:95%"></span></div></div>
+      <div class="skill"><h3><i class="devicon-cplusplus-plain colored"></i> C++</h3><div class="bar"><span style="width:90%"></span></div></div>
+      <div class="skill"><h3><i class="devicon-html5-plain colored"></i> HTML</h3><div class="bar"><span style="width:90%"></span></div></div>
+      <div class="skill"><h3><i class="devicon-css3-plain colored"></i> CSS</h3><div class="bar"><span style="width:85%"></span></div></div>
+      <div class="skill"><h3><i class="devicon-javascript-plain colored"></i> JavaScript</h3><div class="bar"><span style="width:70%"></span></div></div>
+      <div class="skill"><h3><i class="devicon-react-original colored"></i> React</h3><div class="bar"><span style="width:60%"></span></div></div>
     </div>
   </section>
 
@@ -205,15 +193,15 @@
   </section>
 
   <!-- Achievements -->
-  <section id="achievements">
+   <section id="achievements">
     <h2>Achievements</h2>
     <div class="achievements">
       <div class="badge">🎯 Built my first interactive portfolio website</div>
-      <div class="badge">🏆 Participating in college hackathons💻</div>
+      <div class="badge">🏆 Participating in college hackathons 💻</div>
       <div class="badge">🏅 Learning advanced web dev through bootcamp</div>
     </div>
   </section>
-
+  
   <!-- Contact -->
   <section id="contact" class="contact">
     <h2>Contact Me</h2>
@@ -248,19 +236,49 @@
       }
     }
     type();
+
+    // Dark Mode
     function toggleDarkMode(){ document.body.classList.toggle("dark-mode"); }
 
     // Floating Particles
-    const particlesContainer=document.getElementById("particles");
-    for(let p=0;p<40;p++){
-      const particle=document.createElement("div");
-      particle.classList.add("particle");
-      particle.style.left=Math.random()*100+"vw";
-      particle.style.animationDuration=(6+Math.random()*10)+"s";
-      particle.style.opacity=Math.random();
-      particle.style.transform=`scale(${0.5+Math.random()})`;
-      particlesContainer.appendChild(particle);
+    const canvas=document.getElementById("particles");
+    const ctx=canvas.getContext("2d");
+    let particlesArray;
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+
+    class Particle {
+      constructor(x,y,dx,dy,size,color){
+        this.x=x;this.y=y;this.dx=dx;this.dy=dy;this.size=size;this.color=color;
+      }
+      draw(){ ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2,false);ctx.fillStyle=this.color;ctx.fill(); }
+      update(){ 
+        if(this.x+this.size>canvas.width||this.x-this.size<0) this.dx=-this.dx;
+        if(this.y+this.size>canvas.height||this.y-this.size<0) this.dy=-this.dy;
+        this.x+=this.dx; this.y+=this.dy;
+        this.draw();
+      }
     }
+    function init(){
+      particlesArray=[];
+      for(let i=0;i<60;i++){
+        let size=Math.random()*3;
+        let x=Math.random()*(canvas.width-size*2);
+        let y=Math.random()*(canvas.height-size*2);
+        let dx=(Math.random()-0.5)*1;
+        let dy=(Math.random()-0.5)*1;
+        let color=Math.random()>0.5?"#00f2ff":"#ff4ecd";
+        particlesArray.push(new Particle(x,y,dx,dy,size,color));
+      }
+    }
+    function animate(){
+      requestAnimationFrame(animate);
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particlesArray.forEach(p=>p.update());
+    }
+    init();
+    animate();
+    window.addEventListener("resize",()=>{canvas.width=innerWidth;canvas.height=innerHeight;init();});
   </script>
 </body>
 </html>
