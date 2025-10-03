@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Komal | Portfolio</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      background: linear-gradient(-45deg, #1a1a40, #3f0071, #6a00f4, #ff4ecd);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite;  /* slower gradient */
+      line-height: 1.6;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+    }
+    nav h2 { font-size: 1.5rem; color: #ffdf00; }
+    nav a {
+      margin-left: 20px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #ffdf00; }
+
+    header {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    header h1 { font-size: 3rem; }
+    .typing {
+      border-right: 2px solid #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 6s steps(30, end), blink 0.8s infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #ffdf00;
+    }
+
+    /* Projects */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-body { padding: 15px; }
+    .card-body h3 { margin-bottom: 10px; color: #ffdf00; }
+
+    /* Skills */
+    .skills-container {
+      max-width: 600px;
+      margin: auto;
+    }
+    .skill {
+      margin: 15px 0;
+    }
+    .skill p {
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #ffdf00;
+    }
+    .bar {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      overflow: hidden;
+      height: 12px;
+    }
+    .fill {
+      height: 100%;
+      border-radius: 20px;
+    }
+    .fill.high { width: 95%; background: #00ff99; }
+    .fill.medium { width: 65%; background: #ffdf00; }
+    .fill.low { width: 40%; background: #ff4ecd; }
+
+    /* Achievements */
+    .achievements-list {
+      list-style: none;
+      max-width: 600px;
+      margin: auto;
+      padding: 0;
+    }
+    .achievements-list li {
+      background: rgba(255,255,255,0.1);
+      margin: 10px 0;
+      padding: 12px 18px;
+      border-radius: 10px;
+      transition: transform 0.2s;
+    }
+    .achievements-list li:hover {
+      transform: translateX(5px);
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* Contact */
+    .contact-links {
+      text-align: center;
+    }
+    .contact-links a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      background: #ffdf00;
+      color: #000;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .contact-links a:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: rgba(0,0,0,0.7);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h2>Komal 🚀</h2>
+    <div>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Hi, I’m Komal 👩‍💻</h1>
+    <p class="typing">Aspiring Developer | Creative Learner | Hackathon Enthusiast</p>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I’m Komal, passionate about building user-friendly web applications and exploring technology.  
+    I love hackathons, learning new skills, and creating small projects that solve real-world problems in simple ways.</p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-container">
+      <div class="skill">
+        <p>🐍 Python</p>
+        <div class="bar"><div class="fill high"></div></div>
+      </div>
+      <div class="skill">
+        <p>⚡ C++</p>
+        <div class="bar"><div class="fill high"></div></div>
+      </div>
+      <div class="skill">
+        <p>🌐 JavaScript</p>
+        <div class="bar"><div class="fill medium"></div></div>
+      </div>
+      <div class="skill">
+        <p>⚛️ React</p>
+        <div class="bar"><div class="fill low"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" alt="Coding">
+        <div class="card-body">
+          <h3>Portfolio Website</h3>
+          <p>My first personal website showcasing my skills, projects, and achievements.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://media.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif" alt="Web Dev">
+        <div class="card-body">
+          <h3>Hackathon Project</h3>
+          <p>A creative solution built in a short coding sprint with my teammates.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif" alt="JS">
+        <div class="card-body">
+          <h3>Mini To-Do App</h3>
+          <p>A simple JavaScript app to add and track daily tasks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <ul class="achievements-list">
+      <li>🌟 Completed Dev Club Web Development Bootcamp</li>
+      <li>⚡ Built my first personal portfolio website</li>
+      <li>🤝 Participated in college hackathon projects</li>
+      <li>📚 Practicing Python and C++ through coding challenges</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-links">
+      <a href="mailto:ahlawatkomal20@gmail.com">📧 Email</a>
+      <a href="https://github.com/komal-20ahlawat" target="_blank">💻 GitHub</a>
+      <a href="https://linkedin.com" target="_blank">🔗 LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Komal | Built with ❤️ for Dev Club Hackathon
+  </footer>
+</body>
+</html>
